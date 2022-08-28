@@ -1,0 +1,12 @@
+#!/bin/bash
+
+cd "${0%/*}"
+
+cd ..
+if test ! -n "$DOCKER_DJANGO_SCHEMA"
+then
+  echo "Required environment variable DOCKER_DJANGO_SCHEMA missing."
+  exit 1
+fi
+
+db -qc "CREATE SCHEMA IF NOT EXISTS $DOCKER_DJANGO_SCHEMA;"

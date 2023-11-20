@@ -53,6 +53,12 @@ INSTALLED_APPS = [
 
     # Utils.
     "wait_for_db",
+
+    # Models.
+    "completed_tasks",
+    "tasks",
+    "locations",
+    "weather_reports",
 ]
 
 MIDDLEWARE = [

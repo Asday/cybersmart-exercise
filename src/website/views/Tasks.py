@@ -4,4 +4,4 @@ from tasks.models import Task
 
 
 class Tasks(ListView):
-    model = Task
+    queryset = Task.objects.open()

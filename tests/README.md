@@ -8,3 +8,4 @@ Path | Description
 -|-
 `main.py` | Tests yet to be categorised into their own modules.
 `pytest.ini` | Configuration for the test runner.
+`stories.py` | Integration tests as described by the [brief](../docs/brief.pdf)

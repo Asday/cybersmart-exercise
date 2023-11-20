@@ -2,7 +2,7 @@ from django.db import models
 
 
 class CompletedTask(models.Model):
-    task = models.ForeignKey("tasks.Task", on_delete=models.CASCADE)
+    task = models.OneToOneField("tasks.Task", on_delete=models.CASCADE)
     when = models.DateTimeField(auto_now_add=True, editable=False)
 
     def __str__(self):

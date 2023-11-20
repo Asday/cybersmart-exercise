@@ -59,6 +59,9 @@ INSTALLED_APPS = [
     "tasks",
     "locations",
     "weather_reports",
+
+    # Views.
+    "website",
 ]
 
 MIDDLEWARE = [

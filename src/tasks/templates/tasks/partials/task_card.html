@@ -1,0 +1,10 @@
+<a href="{{ task.get_absolute_url }}">
+  <article class="card border-primary mb-3 mr-3" style="width: 20rem;">
+    <section class="card-header">{{ task }}</section>
+    <section class="card-body">
+      <p class="card-text">
+        {{ task.description|truncatechars:250|linebreaksbr }}
+      </p>
+    </section>
+  </article>
+</a>

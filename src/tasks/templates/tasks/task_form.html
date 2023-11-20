@@ -1,0 +1,23 @@
+{% extends "tasks/base.html" %}
+
+{% block title %}{{ block.super }} &mdash; Create{% endblock %}
+
+{% block content %}
+  <article class="container">
+    <h1>Create Task</h1>
+
+    <section class="row">
+      <form method="POST">
+        {% csrf_token %}
+        {{ form }}
+
+        <button class="btn btn-primary" type="submit">
+          {% if object %}
+            Update
+          {% else %}
+            Create
+          {% endif %}
+        </button>
+      </form>
+    </section>
+{% endblock %}

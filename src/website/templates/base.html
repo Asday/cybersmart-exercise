@@ -13,5 +13,17 @@
 
 <body>
   {% block content %}{% endblock %}
+
+  {% block js %}
+    <script>
+      window.ready = window.ready || ((fn) => {
+        if (document.readyState !== 'loading') {
+          fn();
+        } else {
+          document.addEventListener('DOMContentLoaded', fn);
+        }
+      })
+    </script>
+  {% endblock %}
 </body>
 </html>

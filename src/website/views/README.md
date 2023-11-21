@@ -7,6 +7,7 @@ This directory is a Python module containing all views for the project.  Each fi
 Path | Description
 -|-
 [`mixins/`](mixins/) | Python module containing view mixins for the project.
+`TaskComplete.py` | Completion view for [`Task`s](../../tasks/models/Task.py).
 `TaskCreate.py` | Creation view for [`Task`s](../../tasks/models/Task.py).
 `TaskDelete.py` | Deletion view for [`Task`s](../../tasks/models/Task.py).
 `TaskDetail.py` | Detail view for [`Task`s](../../tasks/models/Task.py).

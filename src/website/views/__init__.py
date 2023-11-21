@@ -1,3 +1,4 @@
+from .TaskComplete import TaskComplete
 from .TaskCreate import TaskCreate
 from .TaskDelete import TaskDelete
 from .TaskDetail import TaskDetail

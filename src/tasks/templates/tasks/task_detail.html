@@ -20,8 +20,15 @@
 
     <section class="row">
       <a
-        href="{% url 'website:task_update' pk=task.pk %}"
+        href="{% url 'website:task_complete' pk=task.pk %}"
         class="btn btn-primary btn-block"
+      >
+        Complete this task
+      </a>
+
+      <a
+        href="{% url 'website:task_update' pk=task.pk %}"
+        class="btn btn-secondary btn-block"
       >
         Edit this task
       </a>

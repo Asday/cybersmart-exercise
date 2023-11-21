@@ -12,6 +12,11 @@ urlpatterns = [
         path("create/", views.TaskCreate.as_view(), name="task_create"),
         path("<int:pk>/", include([
             path("", views.TaskDetail.as_view(), name="task_detail"),
+            path(
+                "complete/",
+                views.TaskComplete.as_view(),
+                name="task_complete",
+            ),
             path("delete/", views.TaskDelete.as_view(), name="task_delete"),
             path("update/", views.TaskUpdate.as_view(), name="task_update"),
         ])),

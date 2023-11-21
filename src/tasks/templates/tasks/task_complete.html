@@ -1,0 +1,21 @@
+{% extends "tasks/base.html" %}
+
+{% block title %}{{ block.super }} &mdash; Complete {{ task }}{% endblock %}
+
+{% block content %}
+  <article class="container">
+    <a href="{% url 'website:tasks' %}">&lt; All tasks</a>
+    <br /><a href="{% url 'website:task_detail' pk=object.pk %}">&lt; Back</a>
+
+    <h1>Complete {{ task }}</h1>
+
+    <section class="row">
+      <form method="POST">
+        {% csrf_token %}
+        {{ form }}
+
+        <button class="btn btn-primary" type="submit">Complete</button>
+      </form>
+    </section>
+  </article>
+{% endblock %}

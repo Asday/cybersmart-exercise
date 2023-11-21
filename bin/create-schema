@@ -3,10 +3,10 @@
 cd "${0%/*}"
 
 cd ..
-if test ! -n "$DOCKER_DJANGO_SCHEMA"
+if test ! -n "$DJANGO_DATABASES_SCHEMA"
 then
-  echo "Required environment variable DOCKER_DJANGO_SCHEMA missing."
+  echo "Required environment variable DJANGO_DATABASES_SCHEMA missing."
   exit 1
 fi
 
-db -qc "CREATE SCHEMA IF NOT EXISTS $DOCKER_DJANGO_SCHEMA;"
+db -qc "CREATE SCHEMA IF NOT EXISTS $DJANGO_DATABASES_SCHEMA;"

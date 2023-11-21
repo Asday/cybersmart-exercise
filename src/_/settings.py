@@ -1,7 +1,6 @@
 import json
 import os
 from pathlib import Path
-import string
 
 from django.core.checks import Error, register
 
@@ -97,16 +96,18 @@ FORM_RENDERER = "django.forms.renderers.DjangoDivFormRenderer"
 
 WSGI_APPLICATION = "_.wsgi.application"
 
-databases_template = string.Template(os.getenv(
-    "DJANGO_DATABASES",
-    json.dumps({
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": "${BASE_DIR}/db.sqlite3",
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "HOST": os.getenv("DJANGO_DATABASES_HOST"),
+        "USER": os.getenv("DJANGO_DATABASES_USER"),
+        "PASSWORD": os.getenv("DJANGO_DATABASES_PASSWORD"),
+        "NAME": os.getenv("DJANGO_DATABASES_NAME"),
+        "OPTIONS": {
+            "options": f"-csearch_path={os.getenv('DJANGO_DATABASES_SCHEMA')}",
         },
-    }),
-))
-DATABASES = json.loads(databases_template.substitute({"BASE_DIR": BASE_DIR}))
+    },
+}
 
 _missing = object()
 

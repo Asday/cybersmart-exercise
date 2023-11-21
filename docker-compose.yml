@@ -17,24 +17,16 @@ x-python-env-config: &python-env-config
   DJANGO_TIME_ZONE:
   DJANGO_ADMINS:
   DJANGO_AUTH_PASSWORD_VALIDATORS:
+  DJANGO_DATABASES_SCHEMA:
 
 x-python-env: &python-env
   <<: *python-env-config
   DJANGO_CSRF_TRUSTED_ORIGINS: |
     ["https://127.0.0.1:$DOCKER_DJANGO_PORT"]
-  DJANGO_DATABASES: |
-    {
-      "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "HOST": "db",
-        "USER": "python",
-        "PASSWORD": "python",
-        "NAME": "python",
-        "OPTIONS": {
-          "options": "-csearch_path=$DOCKER_DJANGO_SCHEMA"
-        }
-      }
-    }
+  DJANGO_DATABASES_HOST: db
+  DJANGO_DATABASES_USER: python
+  DJANGO_DATABASES_PASSWORD: python
+  DJANGO_DATABASES_NAME: python
   DJANGO_CACHES: |
     {
       "default": {
@@ -66,6 +58,17 @@ services:
       POSTGRES_DB: python
     volumes:
       - pgdata:/var/lib/postgresql/data
+
+  db_test:
+    image: postgres:14.2-alpine
+    environment:
+      POSTGRES_PASSWORD: python
+      POSTGRES_USER: python
+      POSTGRES_DB: test_python
+    volumes:
+      - pgdata_test:/var/lib/postgresql/data
+    profiles:
+      - test
 
   django:
     <<: *python
@@ -130,19 +133,19 @@ services:
       <<: *python-env
       DJANGO_DEBUG: 'false'
       DJANGO_SECRET_KEY: 'testing'
-      DJANGO_DATABASES: |
-        {
-          "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": "~/test.sqlite3"
-          }
-        }
+      DJANGO_DATABASES_HOST: db_test
+      DJANGO_DATABASES_USER: python
+      DJANGO_DATABASES_PASSWORD: python
+      DJANGO_DATABASES_NAME: python  # Django mangles this to "test_python".
+      DJANGO_DATABASES_SCHEMA: public
       DJANGO_CACHE_LOCATION: redis://redis:6379/15
       CELERY_BROKER_URL: redis://redis:6379/14
       CELERY_RESULT_BACKEND: redis://redis:6379/13
     working_dir: /tests
     profiles:
       - test
+    depends_on:
+      - db_test
     command: pytest
 
   flake8:
@@ -197,3 +200,4 @@ services:
 
 volumes:
   pgdata:
+  pgdata_test:

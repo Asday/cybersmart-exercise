@@ -1,5 +1,22 @@
 <a href="{{ task.get_absolute_url }}">
-  <article class="card border-primary mb-3 mr-3" style="width: 20rem;">
+  <article
+    class="
+      card mb-3 mr-3
+      {% with task.location.weatherreport_set.current.first.as_color as color %}
+        {% if color == "red" %}
+          bg-danger
+          text-white
+        {% elif color == "yellow" %}
+          bg-primary
+          text-white
+        {% elif color == "blue" %}
+          bg-info
+          text-white
+        {% endif %}
+      {% endwith %}
+    "
+    style="width: 20rem;"
+  >
     <section class="card-header">{{ task }}</section>
     <section class="card-body">
       <p class="card-text">

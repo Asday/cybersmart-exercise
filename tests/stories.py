@@ -192,5 +192,9 @@ def weather_reports_dictate_task_background(client):
             .find(lambda t: t.has_attr("class") and "card-header" in t["class"])
             .text
         ]
+        clean_classes = [
+            class_.strip("\\n") for class_ in card["class"]
+            if class_.strip("\\n")
+        ]
 
-        assert weathers_to_classes[task['weather']] in card["class"]
+        assert weathers_to_classes[task['weather']] in clean_classes

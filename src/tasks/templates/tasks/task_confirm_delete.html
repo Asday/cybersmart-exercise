@@ -1,0 +1,25 @@
+{% extends "tasks/base.html" %}
+
+{% block title %}{{ block.super }} &mdash; Delete {{ task }}{% endblock %}
+
+{% block content %}
+  <article class="container">
+    <a href="{% url 'website:tasks' %}">&lt; All tasks</a>
+    <br /><a href="{% url 'website:task_detail' pk=object.pk %}">&lt; Back</a>
+
+    <h1>Complete {{ task }}</h1>
+
+    <p>
+      Are you sure you want to delete this task?  This cannot be undone.
+    </p>
+
+    <section class="row">
+      <form method="POST">
+        {% csrf_token %}
+        {{ form }}
+
+        <button class="btn btn-danger" type="submit">Delete</button>
+      </form>
+    </section>
+  </article>
+{% endblock %}

@@ -8,6 +8,7 @@ Path | Description
 -|-
 [`mixins/`](mixins/) | Python module containing view mixins for the project.
 `TaskCreate.py` | Creation view for [`Task`s](../../tasks/models/Task.py).
+`TaskDelete.py` | Deletion view for [`Task`s](../../tasks/models/Task.py).
 `TaskDetail.py` | Detail view for [`Task`s](../../tasks/models/Task.py).
 `Tasks.py` | List view for [`Task`s](../../tasks/models/Task.py), which also serves as the homepage.
 `TaskUpdate.py` | Update view for [`Task`s](../../tasks/models/Task.py).

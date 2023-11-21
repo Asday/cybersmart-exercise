@@ -25,6 +25,13 @@
       >
         Edit this task
       </a>
+
+      <a
+        href="{% url 'website:task_delete' pk=task.pk %}"
+        class="btn btn-danger btn-block"
+      >
+        Delete this task
+      </a>
     </section>
   </article>
 {% endblock %}

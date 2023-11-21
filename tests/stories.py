@@ -117,7 +117,8 @@ def add_edit_tasks_location_dropdown(client):
                 t.name.strip("\\n") == "label"
                 and "location" in t.text.lower()
             ))
-            .find_next_sibling("select")
+            .parent
+            .find("select")
             .find_all("option")
         )
 

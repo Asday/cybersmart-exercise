@@ -13,6 +13,7 @@ class QuerySet(models.QuerySet):
 
 class WeatherReport(models.Model):
     name = models.CharField(max_length=200)
+    celcius = models.DecimalField(max_digits=6, decimal_places=2)
     location = models.ForeignKey("locations.Location", on_delete=models.PROTECT)
     when = models.DateTimeField(auto_now_add=True, editable=False)
 

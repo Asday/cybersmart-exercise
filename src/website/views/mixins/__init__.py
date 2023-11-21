@@ -1,0 +1,1 @@
+from .WeatherReportsMixin import WeatherReportsMixin

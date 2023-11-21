@@ -61,6 +61,9 @@ INSTALLED_APPS = [
 
     # Views.
     "website",
+
+    # Other.
+    "openweather",
 ]
 
 MIDDLEWARE = [

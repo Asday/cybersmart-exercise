@@ -4,6 +4,8 @@ from pathlib import Path
 
 from django.core.checks import Error, register
 
+from celery.schedules import crontab
+
 
 _settings_check_tag = "settings"
 
@@ -185,3 +187,10 @@ ADMINS = json.loads(os.getenv("DJANGO_ADMINS", "[]"))
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 OPENWEATHER_API_KEY = os.getenv("DJANGO_OPENWEATHER_API_KEY")
+
+CELERY_BEAT_SCHEDULE = {
+    'openweather.tasks.get_weather': {
+        'task': 'openweather.tasks.get_weather',
+        'schedule': crontab(minute='*'),
+    },
+}

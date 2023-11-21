@@ -2,7 +2,11 @@ from django.views.generic import UpdateView
 
 from tasks.models import Task
 
+from ..forms import TaskForm
 
-class TaskUpdate(UpdateView):
+from .mixins import WeatherReportsMixin
+
+
+class TaskUpdate(WeatherReportsMixin, UpdateView):
     model = Task
-    fields = ["name", "description", "location"]
+    form_class = TaskForm

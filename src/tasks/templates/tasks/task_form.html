@@ -21,3 +21,9 @@
       </form>
     </section>
 {% endblock %}
+
+{% block js %}
+  {{ weather_reports|json_script:"weatherReports" }}
+
+  {{ block.super }}
+{% endblock %}

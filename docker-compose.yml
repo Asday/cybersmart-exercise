@@ -18,6 +18,7 @@ x-python-env-config: &python-env-config
   DJANGO_ADMINS:
   DJANGO_AUTH_PASSWORD_VALIDATORS:
   DJANGO_DATABASES_SCHEMA:
+  DJANGO_OPENWEATHER_API_KEY:
 
 x-python-env: &python-env
   <<: *python-env-config
@@ -141,6 +142,7 @@ services:
       DJANGO_CACHE_LOCATION: redis://redis:6379/15
       CELERY_BROKER_URL: redis://redis:6379/14
       CELERY_RESULT_BACKEND: redis://redis:6379/13
+      DJANGO_OPENWEATHER_API_KEY: spurious-key
     working_dir: /tests
     profiles:
       - test

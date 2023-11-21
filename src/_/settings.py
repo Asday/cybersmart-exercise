@@ -180,3 +180,5 @@ LOGOUT_REDIRECT_URL = "/"
 ADMINS = json.loads(os.getenv("DJANGO_ADMINS", "[]"))
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+OPENWEATHER_API_KEY = os.getenv("DJANGO_OPENWEATHER_API_KEY")

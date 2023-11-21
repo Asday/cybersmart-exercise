@@ -24,6 +24,10 @@
         }
       })
     </script>
+
+    {% if form.media.js %}
+      {{ form.media.js }}
+    {% endif %}
   {% endblock %}
 </body>
 </html>

@@ -34,6 +34,15 @@ class Idempotent:
 
 @shared_task
 def get_weather():
+    """
+    Determines any `Location()`s without a fresh `WeatherReport`, and
+    submits their PKs for processing by another task.
+
+    A `WeatherReport()` is considered "fresh" based on how many
+    `Location()`s exist, and how rate limited the API calls are.  More
+    `Location()`s, or lower API limits, will extend the shelf life of
+    `WeatherReport`s.
+    """
     try:
         with Idempotent("get_weather_sentinel"):
             calls_per_second = 1
